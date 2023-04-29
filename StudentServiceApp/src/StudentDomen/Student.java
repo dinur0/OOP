@@ -9,6 +9,12 @@ public class Student extends User implements Comparable<Student>{
     }
 
 
+    @Override
+    public int getAge() {
+        return super.getAge();
+    }
+
+
     public long getStudentID() {
         return studentID;
     }
