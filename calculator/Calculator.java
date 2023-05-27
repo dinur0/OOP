@@ -1,39 +1,48 @@
 package calculator;
 
+
 public final class Calculator implements iCalculable {
 
-    private int primaryArg;
-    private int secondaryArg;
+    private ComplexNumber complex;
 
-    public Calculator(int primaryArg,int secondaryArg) {
-        this.primaryArg = primaryArg;
-        this.secondaryArg = secondaryArg;
+    public Calculator(ComplexNumber complex) {
+        this.complex = complex;
+    }
+
+    public Calculator(double primaryArg, double secondaryArg) {
     }
 
     @Override
-    public iCalculable sum(int arg, int secArg) {
-        primaryArg += arg;
-        secondaryArg += secArg;
+    public iCalculable sum(double arg, double secArg) {
+        complex.setFirst(complex.getFirst()+arg);
+        complex.setSecond(complex.getSecond()+secArg);
         return this;
     }
 
     @Override
-    public iCalculable multi(int arg, int secArg) {
-        primaryArg = primaryArg * arg - (secondaryArg * secArg * (-1)); //i^2 =-1
-        secondaryArg = primaryArg * secArg + secondaryArg * arg;
+    public iCalculable multi(double arg, double secArg) {
+        complex.setFirst(complex.getFirst() * arg - (complex.getSecond() * secArg * (-1))); //i^2 =-1
+        complex.setSecond(complex.getFirst() * secArg + complex.getSecond() * arg);
         return this;
     }
 
     @Override
-    public iCalculable getResult() {
-        return this;
+    public ComplexNumber getResult() {
+        return complex;
     }
-
+    /*переопределение TOString метода */
     @Override
     public String toString() {
-        if (secondaryArg == 0) return primaryArg + "";
-        if (primaryArg == 0) return secondaryArg + "i";
-        if (secondaryArg <  0) return primaryArg + " - " + (-secondaryArg) + "i";
-        return primaryArg + " + " + secondaryArg + "i";
+        if (complex.getSecond() == 0) return complex.getFirst() + "";
+        if (complex.getFirst() == 0) return complex.getSecond() + "i";
+        if (complex.getSecond() <  0) return complex.getFirst() + " - " + (-(complex.getSecond())) + "i";
+        return complex.getFirst() + " + " + complex.getSecond() + "i";
+    }
+
+    @Override
+    public iCalculable divide(double c, double d) {
+        complex.setFirst((complex.getFirst()*c+complex.getSecond()*d)/(c*c+d*d));
+        complex.setSecond((complex.getSecond()*c+complex.getFirst()*d)/(c*c+d*d));
+        return this;
     }
 }

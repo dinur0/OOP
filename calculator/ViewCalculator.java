@@ -12,27 +12,44 @@ public class ViewCalculator {
 
     public void run() {
         while (true) {
-            int primaryArg = promptInt("Введите первое число \"a\": ");
-            int secondaryArg = promptInt("Введите первое число \"b(i)\": ");
-            iCalculable calculator = calculableFactory.create(primaryArg, secondaryArg);
+            double primaryArg = promptDouble("Введите первое число \"a\": ");
+            double secondaryArg = promptDouble("Введите первое число \"b(i)\": ");
+            ComplexNumber firstComplex = new ComplexNumber(primaryArg, secondaryArg);
+            iCalculable calculator = calculableFactory.create(firstComplex);
             while (true) {
-                String cmd = prompt("Введите команду (*, +, =) : ");
+                String cmd = prompt("Введите команду (*, +, /, =) : ");
                 if (cmd.equals("*")) {
-                    int arg = promptInt("Введите второе число \"a\": ");
-                    int sec = promptInt("Введите второе число \"b(i)\": ");
+                    double arg = promptDouble("Введите второе число \"a\": ");
+                    double sec = promptDouble("Введите второе число \"b(i)\": ");
                     calculator.multi(arg, sec);
                     continue;
                 }
                 if (cmd.equals("+")) {
-                    int arg = promptInt("Введите второе число \"a\": ");
-                    int sec = promptInt("Введите второе число \"b(i)\": ");
+                    double arg = promptDouble("Введите второе число \"a\": ");
+                    double sec = promptDouble("Введите второе число \"b(i)\": ");
                     calculator.sum(arg, sec);
                     continue;
                 }
+                if (cmd.equals("/")) {
+                    double arg = promptDouble("Введите второе число \"a\": ");
+                    double sec = promptDouble("Введите второе число \"b(i)\": ");
+                    calculator.divide(arg, sec);
+                    continue;
+                }
                 if (cmd.equals("=")) {
-                    // iCalculable result = calculator.getResult();
-                    System.out.printf("Результат %d\n", calculator);
+                    ComplexNumber result = calculator.getResult();
+                    if (second == 0) return first + "";
+                    if (first == 0) return second + "i";
+                    if (second <  0) return first + " - " + (-second) + "i";
+                    return first + " + " + second + "i";
+                    System.out.printf("Результат %d\n", result);
                     break;
+                        /*или применить здесь геттеры из "result" и перенести логику сюда?
+        if (second == 0) return first + "";
+        if (first == 0) return second + "i";
+        if (second <  0) return first + " - " + (-second) + "i";
+        return first + " + " + second + "i";
+                        */
                 }
             }
             String cmd = prompt("Еще посчитать (Y/N)?");
@@ -49,9 +66,9 @@ public class ViewCalculator {
         return in.nextLine();
     }
 
-    private int promptInt(String message) {
+    private double promptDouble(String message) {
         Scanner in = new Scanner(System.in);
         System.out.print(message);
-        return Integer.parseInt(in.nextLine());
+        return Double.parseDouble(in.nextLine());
     }
 }

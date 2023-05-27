@@ -8,24 +8,38 @@ public class Decorator implements iCalculable {
     this.calculatorThis = calculatorThis;
     this.logger = logger;
 }
-// комп. числа создать как классы?
+
     @Override 
-    public iCalculable sum(int arg, int secArg) {
-        // iCalculable primaryArg += calculatorThis.getResult();
-        // logger.log(".............");
-        // return this;
+    public iCalculable sum(double arg, double secArg) {
+        ComplexNumber compl = calculatorThis.getResult();
+        logger.log(String.format("Первое значение калькулятора %d. Начало вызова метода sum с параметром %d", compl.getFirst(),compl.getSecond(), arg, secArg));
+        iCalculable res = calculatorThis.sum(arg,secArg);
+        logger.log(String.format("Вызова метода sum произошел"));
+        return res;
+    }
+
+    @Override 
+    public iCalculable multi(double arg, double secArg) {
+        ComplexNumber compl = calculatorThis.getResult();
+        logger.log(String.format("Первое значение калькулятора %d. Начало вызова метода multi с параметром %d", compl.getFirst(),compl.getSecond(), arg, secArg));
+        iCalculable res = calculatorThis.multi(arg,secArg);
+        logger.log(String.format("Вызова метода multi произошел"));
+        return res;
     }
 
     @Override
-    public iCalculable multi(int arg, int secArg) {
-        // primaryArg = primaryArg * arg - (secondaryArg * secArg * (-1)); //i^2 =-1
-        // secondaryArg = primaryArg * secArg + secondaryArg * arg;
-        // return this;
+    public ComplexNumber getResult() {
+        ComplexNumber res = calculatorThis.getResult();
+        logger.log(String.format("Получение результата %d", res));
+        return res;
     }
-
-        @Override
-        // public iCalculable getResult() {
-        //     return this;
+    @Override
+    public iCalculable divide(double arg, double secArg) {
+        ComplexNumber compl = calculatorThis.getResult();
+        logger.log(String.format("Первое значение калькулятора %d. Начало вызова метода divide с параметром %d", compl.getFirst(),compl.getSecond(), arg, secArg));
+        iCalculable res = calculatorThis.divide(arg,secArg);
+        logger.log(String.format("Вызова метода divide произошел"));
+        return res;
     }
 
     

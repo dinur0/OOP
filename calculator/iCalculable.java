@@ -1,7 +1,8 @@
 package calculator;
 
 public interface iCalculable {
-    iCalculable sum(int arg, int secArg);
-    iCalculable multi(int arg, int secArg);
-    iCalculable getResult();
+    iCalculable sum(double arg, double secArg);
+    iCalculable multi(double arg, double secArg);
+    iCalculable divide(double arg, double secArg); 
+    ComplexNumber getResult();
 }

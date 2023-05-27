@@ -7,8 +7,8 @@ public LogCalcFactory(iLoggable logger){
     this.logger = logger;
 }
 
-    public iCalculable create(int primaryArg, int secondaryArg) {
-        return new Decorator(new Calculator(primaryArg, secondaryArg),logger);
+    public iCalculable create(ComplexNumber comp) {
+        return new Decorator(new Calculator(comp),logger);
     }
 }
 
