@@ -30,14 +30,6 @@ public final class Calculator implements iCalculable {
     public ComplexNumber getResult() {
         return complex;
     }
-    /*переопределение TOString метода */
-    @Override
-    public String toString() {
-        if (complex.getSecond() == 0) return complex.getFirst() + "";
-        if (complex.getFirst() == 0) return complex.getSecond() + "i";
-        if (complex.getSecond() <  0) return complex.getFirst() + " - " + (-(complex.getSecond())) + "i";
-        return complex.getFirst() + " + " + complex.getSecond() + "i";
-    }
 
     @Override
     public iCalculable divide(double c, double d) {

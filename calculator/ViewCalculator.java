@@ -38,18 +38,8 @@ public class ViewCalculator {
                 }
                 if (cmd.equals("=")) {
                     ComplexNumber result = calculator.getResult();
-                    if (second == 0) return first + "";
-                    if (first == 0) return second + "i";
-                    if (second <  0) return first + " - " + (-second) + "i";
-                    return first + " + " + second + "i";
-                    System.out.printf("Результат %d\n", result);
+                    System.out.printf("Результат %d\n", result.toString());
                     break;
-                        /*или применить здесь геттеры из "result" и перенести логику сюда?
-        if (second == 0) return first + "";
-        if (first == 0) return second + "i";
-        if (second <  0) return first + " - " + (-second) + "i";
-        return first + " + " + second + "i";
-                        */
                 }
             }
             String cmd = prompt("Еще посчитать (Y/N)?");
